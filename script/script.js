@@ -104,6 +104,12 @@ const closedIssues = () =>{
     activeButton("closed-btn");
 }
 
+// For All Button 
+const showAll = () =>{
+    displayAllIssues(allIssuesData);
+    activeButton("all-btn");
+}
+
 // Active Button Select
 function activeButton(id){
     const allBtn = document.getElementById("all-btn")
