@@ -41,8 +41,55 @@ const loadModalDetails = async (id) => {
 
 const displayModalDetails = (modal) => {
     // console.log(modal);
+    let modalLabels = "";
+        for (let lab of modal.labels){
+            modalLabels += `<span class="bg-yellow-100 rounded-full border border-yellow-500 text-yellow-600 px-2 py-1 mr-2 text-[10px]">
+                                ${lab.toUpperCase()}
+                            </span>`;
+        }
+
     const modalBox = document.getElementById("modals-container")
-    modalBox.innerHTML = "I'm from JavaScript";
+    modalBox.innerHTML = `
+        <div class="p-5 space-y-5">
+            <div>
+                <h2 class="text-xl font-bold mb-4">${modal.title}</h2>
+            </div>
+            <div>
+                <span class="
+                    ${modal.status === "open"?  "bg-green-100 rounded-full text-green-500 px-3 py-1 border border-green-600" 
+                        : "bg-purple-100 rounded-full text-purple-500 px-3 py-1 border border-purple-600"
+                    }               
+                ">${modal.status}</span>
+                <span class="text-slate-500"><i class="fa-solid fa-circle"></i>  ${modal.author}</span>
+                <span class="text-slate-500"><i class="fa-solid fa-circle"></i>  ${modal.createdAt}</span>
+            </div>
+
+            <div>
+                <div>                                
+                    ${modalLabels}
+                </div>                        
+            </div>
+
+            <div>
+                <p class=" text-slate-500">${modal.description}</p>
+            </div>
+            <div class="flex justify-between items-center">
+                <div>
+                    <p class="text-slate-500">Assignee:</p>
+                    <h2 class="font-bold">${modal.assignee}</h2>
+                </div>
+                <div>
+                    <p class="text-slate-500">Priority:</p>
+                    <span class="
+                                    ${modal.priority === "high"?  "bg-red-100 rounded-full text-red-500 px-3 py-1" :
+                                        modal.priority === "medium" ? "bg-yellow-100 rounded-full text-yellow-500 px-3 py-1" : 
+                                        "bg-slate-100 rounded-full text-slate-500 px-3 py-1"
+                                    }                               
+                                ">${modal.priority}</span>
+                </div>
+            </div>
+        </div>
+    `;
     document.getElementById("my_modal_5").showModal();
 
 };
