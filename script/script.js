@@ -17,6 +17,37 @@ const allIssues = () =>{
 };
 
 
+// // Modal Section Function
+// const loadModalDetails = (id) =>{    
+//     const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+//     fetch(url)
+//         .then((res)=>res.json())
+//         .then((data)=>{
+//             modalData = data.data; 
+//             console.log(modalData);
+            
+//             });    
+// };
+
+// Modal Section
+
+const loadModalDetails = async (id) => {
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+   
+    const res = await fetch(url);
+    const details = await res.json();
+    displayModalDetails(details.data);
+};
+
+const displayModalDetails = (modal) => {
+    // console.log(modal);
+    const modalBox = document.getElementById("modals-container")
+    modalBox.innerHTML = "I'm from JavaScript";
+    document.getElementById("my_modal_5").showModal();
+
+};
+
+
 // All Issue Display Function
 const displayAllIssues=(issues)=>{
     // console.log(issues); 
@@ -39,7 +70,7 @@ const displayAllIssues=(issues)=>{
 
         const issueCard = document.createElement('div')
         issueCard.innerHTML = `
-            <div class="
+            <div onClick="loadModalDetails(${issue.id})" class="
                 ${issue.status === "open"?  "border-t-6 border-green-600 rounded-xl mt-6 shadow-xl" 
                     : "border-t-6 border-purple-600 rounded-xl mt-6 shadow-xl" 
                 } h-full                
@@ -143,9 +174,12 @@ const search = () => {
     displayAllIssues(findSearch);
 };
 
-// Spinner Function
-const showSpinner = () => document.getElementById("spinner").classList.remove("hidden");
-const hideSpinner = () => document.getElementById("spinner").classList.add("hidden");
+// // Spinner Function
+// const showSpinner = () => document.getElementById("spinner").classList.remove("hidden");
+// const hideSpinner = () => document.getElementById("spinner").classList.add("hidden");
+
+
+// Modal Section
 
 
 
